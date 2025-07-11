@@ -1,0 +1,38 @@
+body {
+    background-color: white;
+    color: black;
+    max-width: 800px; /* ここで横のサイズを調整する */
+    margin: 50px auto; /* 長げ40px, 中央よせ */
+    padding: 20px; /* 行間を広めに */
+    line-height: 1.6;
+}
+
+.header-logo{
+    width: 800px;
+    height: 200px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+h1 {
+    font-size: 50px;
+    color: blue;
+}
+
+.profile {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin: 40px auto;
+  max-width: 600px;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.profile h2 {
+  color: #4682b4;
+  text-align: center;
+  margin-bottom: 20px;
+}

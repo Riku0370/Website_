@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>日記一覧</title></head>
+<body>
+  <h1>日記一覧</h1>
+  <a href="{{url_for('new')}}">日記を作成</a>
+  <ul>
+  {% for diary in diaries %}
+    <li>
+      <a href="{{ url_for('detail', diary_id=diary[0]) }}">
+        {{ diary[1] }} - {{ diary[2] }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>
