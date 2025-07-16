@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>ソラの日記</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('top.static', filename='style.css')}}">
 </head>
 <body>
   <header>
-    <img src="{{url_for('static', filename='logo.jpg')}}" alt="ロゴ画像"  class="header-logo">
+    <img src="{{url_for('top.static', filename='logo.jpg')}}" class="header-logo">
     <h1>わたしの作品</h1>
     <p>　はじめまして！！ここはわたしが作り上げた作品を紹介する場所です！大学生活を送る中で自分自身が作りたいゲームやアプリを次々と投稿していくよ。
        まだまだ勉強不足だし、今のページを見てもあまりうまくはないけど精一杯作り上げていくよ！更新頻度は1週間から2週間を目安に頑張っていくつもり！
@@ -17,9 +17,8 @@
 
 <nav>
   <ul>
-    <li><a href="index.html">ホーム</a></li>
-    <li><a href="production.html">作品一覧</li>
-    <li><a href="diary.html">日記一覧</a></li>
+    <li><a href="production.html">作品一覧</a></li>
+    <li><a href="{{url_for('diary.index')}}">日記一覧</a></li>
   </ul>
 </nav>
 

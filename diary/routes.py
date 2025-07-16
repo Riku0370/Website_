@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+from diary import diary_bp
 from datetime import datetime
 
-app = Flask(__name__)
-DB_NAME = 'diary.db'
+DB_NAME = 'diary/diary.db'
 
 def init_db():
     with sqlite3.connect(DB_NAME) as conn:
@@ -14,14 +14,14 @@ def init_db():
                      created_at TEXT NOT NULL
                      )''')
 
-@app.route('/')
+@diary_bp.route('/')
 def index():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.execute('SELECT id, title, created_at FROM diary ORDER BY created_at DESC')
     diaries = cursor.fetchall()
-    return render_template('index.html', diaries = diaries)
+    return render_template('diary_index.html', diaries = diaries)
 
-@app.route('/new', methods=['GET', 'POST'])
+@diary_bp.route('/new', methods=['GET', 'POST'])
 def new():
     if request.method=='POST':
         title = request.form['title']
@@ -30,17 +30,13 @@ def new():
         with sqlite3.connect(DB_NAME) as conn:
             conn.execute('INSERT INTO diary (title, content, created_at) VALUES (?, ?, ?)',
                          (title, content, now))
-        return redirect(url_for('index'))
-    return render_template('form.html')
+        return redirect(url_for('diary.index'))
+    return render_template('diary_form.html')
 
-@app.route('/detail/<int:diary_id>')
+@diary_bp.route('/detail/<int:diary_id>')
 def detail(diary_id):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.execute('SELECT id, title, content, created_at FROM diary WHERE id = ?', (diary_id,))
     diary = cursor.fetchone()
     conn.close()
-    return render_template('detail.html', diary=diary)
-
-if __name__ == '__main__':
-    init_db()
-    app.run(debug=True)
+    return render_template('diary_detail.html', diary=diary)
